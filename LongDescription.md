@@ -1,1 +1,1 @@
-Long description in GitHub
+Long description from GitHub
