@@ -1,25 +1,21 @@
 This is a place holder on GitHub for Post Deployment guidance
 
-# Scaling
+# <a name="scaling"></a>Scaling
 More descriptions about scaling.
-## sub title 1
-## sub title 2
-## sub title 3
+## sub title
+More descriptions.
 
-# Customization
+# <a name="customization"></a>Customization
 More description about customization.
-## sub title 1
-## sub title 2
-## sub title 3
+## sub title
+More descriptions.
 
-# Enhancing Visualization
+# <a name="visualization"></a>Enhancing Visualization
 More description about enhancing visualization.
-## sub title 1
-## sub title 2
-## sub title 3
+## sub title
+More descriptions.
 
 # <a name="security"></a>Security
 More description about security.
-## sub title 1
-## sub title 2
-## sub title 3
+## sub title
+More descriptions.
