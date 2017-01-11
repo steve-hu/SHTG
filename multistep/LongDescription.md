@@ -7,4 +7,4 @@ The pattern involves the following four steps:
 3. Deploy another ARM template which creates Data Factory and another Web Job. The Data Factory uses a Copy activity to copy the blob to a different location in the same location. The Web Job, when invoked, would set the Start and End times on the Data Factory pipeline and resume the pipeline.
 4. Invoke the second Web Job.
 
-_This content is from LongDescription.md on GitHub._
+_[This content is from LongDescription.md on GitHub.]_
