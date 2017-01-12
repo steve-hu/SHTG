@@ -1,7 +1,7 @@
 <root>
 #Solution How To Guide
-* [Summary](#ShortDescription)
-* [Description](#LongDescription)
+* [Summary](#Summary)
+* [Description](#Description)
 * [Prerequisites](#Prerequisites)
 * [Post Deployment](#PostDeployment)
   * [Scaling](#scaling)
@@ -9,16 +9,14 @@
   * [Enhancing Visualization](#visualization)
   * [Security](#security)
 
-Take me to [Prerequisites](#LongDescription)
-
-#Summary
+#<a name="Summary"></a>Summary
 <a name="ShortDescription">
 Deploying multiple ARM templates and executing actions that cannot be accomplsihed through ARM templates
 
 _[This content is from ShortDescription.md on GitHub.]_
 </a>
 
-#Description
+#<a name="Description"></a>Description
 <a name="LongDescription">
 This pattern demonstrates how to automate a demo that requires deploying multiple ARM templates and also executing actions that cannot be accomplsihed through ARM templates alone.
 
