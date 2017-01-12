@@ -1,9 +1,9 @@
 <root>
-#Solution How To Guide
+#Solution How To Guide for multistep solution
 * [Summary](#Summary)
 * [Description](#Description)
 * [Prerequisites](#Prerequisites)
-* [Post Deployment](#PostDeployment)
+* [Post Deployment Guidance](#PostDeployment)
   * [Scaling](#scaling)
   * [Customization](#customization)
   * [Enhancing Visualization](#visualization)
@@ -11,7 +11,7 @@
 
 #<a name="Summary"></a>Summary
 <ShortDescription>
-Deploying multiple ARM templates and executing actions that cannot be accomplsihed through ARM templates
+Deploying multiple ARM templates and executing actions that cannot be accomplsihed through ARM templates.
 
 _[This content is from README.md on GitHub.]_
 </ShortDescription>
@@ -39,46 +39,25 @@ You can avoid showing this section in CIQS by removing the &lt;Prerequisites&gt;
 _[This content is from README.md on GitHub.]_
 </Prerequisites>
 
-# <a name="PostDeployment"></a>Post Deployment
-This is a place holder on GitHub for Post Deployment guidance
+# <a name="PostDeployment"></a>Post Deployment Guidance
 
 ## <a name="scaling"></a>Scaling
-- More descriptions about scaling.
-- Something about "Header":
-
-### This is an h3 tag
-###### This is an h6 tag
+* More descriptions about scaling.
+* More descriptions about scaling.
+* More descriptions about scaling.
 
 ## <a name="customization"></a>Customization
-- More description about customization.
-- Something about "Emphasis":
-
-*This text will be italic*
-_This will also be italic_
-
-**This text will be bold**
-__This will also be bold__
-
-_You **can** combine them_
+* More descriptions about customization.
+* More descriptions about customization.
+* More descriptions about customization.
 
 ## <a name="visualization"></a>Enhancing Visualization
-- More description about enhancing visualization.
-- Something about "Unordered list":
-
-* Item 1
-* Item 2
-  * Item 2a
-  * Item 2b
+* More descriptions about enhancing visualization.
+* More descriptions about enhancing visualization.
+* More descriptions about enhancing visualization.
 
 ## <a name="security"></a>Security
-* More description about security.
-* Something about "Ordered list":
-
-1. Item 1
-2. Item 2
-3. Item 3
-   * Item 3a
-   * Item 3b
-
-
+* More descriptions about security.
+* More descriptions about security.
+* More descriptions about security.
 </root>
