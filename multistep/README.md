@@ -10,14 +10,14 @@
   * [Security](#security)
 
 #<a name="Summary"></a>Summary
-<a name="ShortDescription">
+<ShortDescription>
 Deploying multiple ARM templates and executing actions that cannot be accomplsihed through ARM templates
 
 _[This content is from ShortDescription.md on GitHub.]_
-</a>
+</ShortDescription>
 
 #<a name="Description"></a>Description
-<a name="LongDescription">
+<LongDescription>
 This pattern demonstrates how to automate a demo that requires deploying multiple ARM templates and also executing actions that cannot be accomplsihed through ARM templates alone.
 
 The pattern involves the following four steps:
@@ -28,12 +28,12 @@ The pattern involves the following four steps:
 4. Invoke the second Web Job.
 
 _[This content is from LongDescription.md on GitHub.]_
-</a>
+</LongDescription>
 
-#Prerequisites
-<a name="Prerequisites">
+#<a name="Prerequisites">Prerequisites</a>
+<Prerequisites>
 Prerequisites from GitHub
-</a>
+</Prerequisites>
 
 # <a name="PostDeployment"></a>Post Deployment
 This is a place holder on GitHub for Post Deployment guidance
