@@ -37,21 +37,13 @@ You can avoid showing this section in CIQS by removing the &lt;Prerequisites&gt;
 
 ## <a name="scaling"></a>Scaling
 * More descriptions about scaling.
-* More descriptions about scaling.
-* More descriptions about scaling.
 
 ## <a name="customization"></a>Customization
-* More descriptions about customization.
-* More descriptions about customization.
 * More descriptions about customization.
 
 ## <a name="visualization"></a>Enhancing Visualization
 * More descriptions about enhancing visualization.
-* More descriptions about enhancing visualization.
-* More descriptions about enhancing visualization.
 
 ## <a name="security"></a>Security
-* More descriptions about security.
-* More descriptions about security.
 * More descriptions about security.
 </root>
