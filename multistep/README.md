@@ -15,6 +15,7 @@ Deploying multiple ARM templates and executing actions that cannot be accomplsih
 </ShortDescription>
 
 #<a name="Description"></a>Description
+### Estimated Provisioning Time: <EstimatedTime>5 Minutes</EstimatedTime>
 <LongDescription>
 This pattern demonstrates how to automate a demo that requires deploying multiple ARM templates and also executing actions that cannot be accomplsihed through ARM templates alone.
 
