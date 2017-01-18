@@ -34,7 +34,7 @@ You can avoid showing this section in CIQS by removing the &lt;Prerequisites&gt;
 </Guide>
 
 # <a name="PostDeployment"></a>Post Deployment Guidance
-<Guide type="PostDeploymentGuidanceUrl" address="https://github.com/steve-hu/SHTG/tree/master/multistep"/>
+<Guide type="PostDeploymentGuidance" url="https://github.com/steve-hu/SHTG/tree/master/multistep"/>
 ## <a name="scaling"></a>Scaling
 * More descriptions about scaling.
 
