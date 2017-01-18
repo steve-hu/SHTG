@@ -1,4 +1,3 @@
-<root>
 #Solution How To Guide for multistep solution
 * [Summary](#Summary)
 * [Description](#Description)
@@ -10,13 +9,13 @@
   * [Security](#security)
 
 #<a name="Summary"></a>Summary
-<ShortDescription>
+<Guide type="ShortDescription">
 Deploying multiple ARM templates and executing actions that cannot be accomplsihed through ARM templates.
-</ShortDescription>
+</Guide>
 
 #<a name="Description"></a>Description
-### Estimated Provisioning Time: <EstimatedTime>5 Minutes</EstimatedTime>
-<LongDescription>
+### Estimated Provisioning Time: <Guide type="EstimatedTime">5 Minutes</Guide>
+<Guide type="LongDescription">
 This pattern demonstrates how to automate a demo that requires deploying multiple ARM templates and also executing actions that cannot be accomplsihed through ARM templates alone.
 
 The pattern involves the following four steps:
@@ -25,17 +24,17 @@ The pattern involves the following four steps:
 2. Invoke the Web Job.
 3. Deploy another ARM template which creates Data Factory and another Web Job. The Data Factory uses a Copy activity to copy the blob to a different location in the same location. The Web Job, when invoked, would set the Start and End times on the Data Factory pipeline and resume the pipeline.
 4. Invoke the second Web Job.
-</LongDescription>
+</Guide>
 
 #<a name="Prerequisites">Prerequisites</a>
-<Prerequisites>
+<Guide type="Prerequisites">
 No Prerequisites for this pattern.
 
 You can avoid showing this section in CIQS by removing the &lt;Prerequisites&gt; tag.
-</Prerequisites>
+</Guide>
 
 # <a name="PostDeployment"></a>Post Deployment Guidance
-
+<Guide type="PostDeployment" value="https://github.com/steve-hu/SHTG/tree/master/multistep"/>
 ## <a name="scaling"></a>Scaling
 * More descriptions about scaling.
 
@@ -47,4 +46,3 @@ You can avoid showing this section in CIQS by removing the &lt;Prerequisites&gt;
 
 ## <a name="security"></a>Security
 * More descriptions about security.
-</root>
