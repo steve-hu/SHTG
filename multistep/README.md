@@ -17,7 +17,7 @@ Deploying multiple ARM templates and executing actions that cannot be accomplsih
 <Guide type="Prerequisites">
 No Prerequisites for this pattern.
 
-You can avoid showing this section in CIQS by removing the &lt;Prerequisites&gt; tag.
+You can avoid showing this section in CIQS by not having the &lt;Guide type="Prerequisites"&gt; tag.
 </Guide>
 
 #<a name="Description"></a>Description
