@@ -150,7 +150,7 @@ The essential goal of this part is to visualize the real-time energy consumption
 	-	Click **“Pin Visual”**![](Figures/PowerBI-4.png) icon on top right corner of this line chart, a "Pin to Dashboard" window may show up for you to choose a dashboard. Please select "EnergyStreamDataReport", then click "Pin".
 </Guide>
 
-## <a name="Customization"></a>**Customization**
+## <a name="Customization"></a>**Custom**
 <Guide type="Customization">
 You can reuse the source code in the [Manual Deployment Guide](https://github.com/Azure/cortana-intelligence-energy-demand-forecasting/tree/Yijing-EnergyForecastSolution/Manual%20Deployment%20Guide) to customize the solution for your data and business needs.
 </Guide>
