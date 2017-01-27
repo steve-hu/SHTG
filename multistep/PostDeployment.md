@@ -2,6 +2,8 @@
 
 This document is focusing on the post deployment instructions for the automated deployment through [Cortana Intelligence Solutions](https://gallery.cortanaintelligence.com/solutions). The source code of the solution as well as manual deployment instructions can be found [here](https://github.com/Azure/cortana-intelligence-energy-demand-forecasting/tree/master/Manual%20Deployment%20Guide).
 
+[link](#visualization) 
+
 # Architecture
 The architecture diagram shows various Azure services that are deployed by [Energy Demand Forecast Solution](https://go.microsoft.com/fwlink/?linkid=831187) using [Cortana Intelligence Solutions](https://gallery.cortanaintelligence.com/solutions), and how they are connected to each other in the end to end solution.
 
