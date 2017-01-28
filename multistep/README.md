@@ -5,7 +5,7 @@
 * [Post Deployment Guidance](#PostDeployment)
   * [Scaling](#scaling)
   * [Customization](#customization)
-  * [Enhancing Visualization](#visualization)
+  * [Visualization](#visualization)
   * [Security](#security)
 
 #<a name="Summary"></a>Summary
@@ -34,14 +34,14 @@ The pattern involves the following four steps:
 </Guide>
 
 # <a name="PostDeployment"></a>Post Deployment Guidance
-<Guide type="PostDeploymentGuidance" url="https://github.com/steve-hu/SHTG/tree/master/multistep"/>
+<Guide type="PostDeploymentGuidance" url="https://github.com/steve-hu/SHTG/blob/master/multistep/PostDeployment.md"/>
 ## <a name="scaling"></a>Scaling
 * More descriptions about scaling.
 
 ## <a name="customization"></a>Customization
 * More descriptions about customization.
 
-## <a name="visualization"></a>Enhancing Visualization
+## <a name="visualization"></a>Visualization
 * More descriptions about enhancing visualization.
 
 ## <a name="security"></a>Security
