@@ -154,3 +154,7 @@ The essential goal of this part is to visualize the real-time energy consumption
 <Guide type="Customization">
 You can reuse the source code in the [Manual Deployment Guide](https://github.com/Azure/cortana-intelligence-energy-demand-forecasting/tree/Yijing-EnergyForecastSolution/Manual%20Deployment%20Guide) to customize the solution for your data and business needs.
 </Guide>
+
+# Scaling
+
+## Security
