@@ -10,6 +10,7 @@ This document is focusing on the post deployment instructions for the automated 
     <tr>
         <td>Hello world</td>
     </tr>
+    <script>alert("I am an alert box!");</script>
 </table>
 
 
