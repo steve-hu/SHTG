@@ -4,6 +4,8 @@ This document is focusing on the post deployment instructions for the automated 
 
 [link](#visualization) 
 
+<script>alert("hello world")</script>
+
 # Architecture
 The architecture diagram shows various Azure services that are deployed by [Energy Demand Forecast Solution](https://go.microsoft.com/fwlink/?linkid=831187) using [Cortana Intelligence Solutions](https://gallery.cortanaintelligence.com/solutions), and how they are connected to each other in the end to end solution.
 
