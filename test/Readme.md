@@ -75,3 +75,251 @@ More details on Twitter's Streaming API OAuth access token can be found [here](h
 
 ## <a name="security"></a>Security
 * More descriptions about security.
+
+
+#### 1. Check PowerShell and Azure cmdlt Version
+
+- 1.1 Open PowerShell (Run as administrator) and run the following command to check the installed PowerShell and Azure cmdlt version. 
+
+    ```
+    (Get-Module -ListAvailable | Where-Object{* $_.Name -eq 'Azure' }) ` | Select Version, Name, Author, PowerShellVersion | Format-List;
+    ```
+
+- 1.2 If the PowerShellVersion is less than 2, please install the latest PowerShell CLI from **[here](http://aka.ms/webpi-azps)**.
+
+
+## Instructions
+
+### Part 1. Listening to tweets and publishing collected data to *Azure Storage Blob*
+1. Download [TweetListenerCloudApp]({PatternAssetBaseUrl}/TweetListenerCloudApp.zip) package.
+2. Copy the configuration below into your favorite text editor, fill in the desired keywords and your *Twitter* accout credentials; save it as a .cscfg file.
+```
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="TweetListenerCloudApp" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="4" osVersion="*" schemaVersion="2014-06.2.4">
+  <Role name="TweetListenerWorker">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <Setting name="Twitter.ConsumerKey" value="H4WnSXCbw5rLYqO5DA1jN3RUD" />
+      <Setting name="Twitter.ConsumerSecret" value="d8bSzyVwuQ3KVfSepM1NZRu6kv4sc5TVCLHd6niXjs44kjXu95" />
+      <Setting name="Twitter.OAuthToken" value="4805597298-xPKUmY0fbhUFDhWMIyRkoqB6BzagGRueRRSyIBD" />
+      <Setting name="Twitter.OAuthTokenSecret" value="8rG4UJxIew58g2ZQC9a3j8mkYcnX6jFA8f4klE0v5dTw0" />
+      <Setting name="Twitter.Keywords" value="#demdebate,@NBCNews,@ABCPolitics,@PBS,@Univision,@HillaryClinton,#Hillary2016,@SenSanders,@BernieSanders,#BernieSanders,@MartinOMalley,@TheDemocrats,#DemDebate,#GOPDebate,#GOP,@realDonaldTrump,@FoxBusiness,@FoxNews,@CBSNews,@CBS,@CNNPolitics,@tedcruz,@RealBenCarson,@marcorubio,@JebBush,@GovChristie,@JohnKasich" />
+      <Setting name="CaptureIntervalMinutes" value="{Outputs.outputInterval}" />
+      <Setting name="BlobNameFormat" value="%Y/%m/%d/%H-%M.txt" />
+      <Setting name="Azure.StorageAccountName" value="{Outputs.storageAccount}" />
+      <Setting name="Azure.StorageAccountKey" value="{Outputs.storageAccountKey}" />
+      <Setting name="Azure.ContainerName" value="{Outputs.outputContainer}" />
+    </ConfigurationSettings>
+  </Role>
+</ServiceConfiguration>
+```
+3. [Create a new Cloud Service](https://portal.azure.com/#create/Microsoft.CloudService) (preferably in this project's resource group)
+and initiate a deployment using the files obtained in the previous steps (.cspkg and .cscfg). Once *Cloud Service* is up and running,
+it will start publishing tweets tagged with any of the keywords specified in the configuration file into your
+[storage account](https://portal.azure.com/#resource/subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/providers/Microsoft.Storage/storageAccounts/{Outputs.storageAccount})
+(under the blob container named *{Outputs.outputContainer}*). A new data slice will be created every {Outputs.outputInterval} minutes.
+
+### Part 2. Setting up *Storage Blob* egress to *Data Lake Store*
+#### Adding *Azure Data Lake Analytics* linked service to your *Data Factory*
+1. Open *Azure Data Factory* [Author and deploy](https://portal.azure.com/#blade/Microsoft_Azure_DataFactory/ADFEditorTreeBlade/factoryId/%2Fsubscriptions%2F{SubscriptionId}%2FresourceGroups%2F{ResourceGroupName}%2Fproviders%2FMicrosoft.DataFactory%2FdataFactories%2F{Outputs.dataFactoryName}/entityType//entityName/) page
+2. Click *New compute* -> *Azure Data Lake Analytics*.
+3. Replace all auto-generated *typeProperties* with
+```
+"accountName": "{Outputs.adlAnalyticsName}"
+```
+4. Click *Authorize* and then *Deploy*.
+#### Adding *Azure Data Lake Store* linked service to your *Data Factory*
+1. Click *New data store* -> *Azure Data Lake Store* on the same [Author and deploy](https://portal.azure.com/#blade/Microsoft_Azure_DataFactory/ADFEditorTreeBlade/factoryId/%2Fsubscriptions%2F{SubscriptionId}%2FresourceGroups%2F{ResourceGroupName}%2Fproviders%2FMicrosoft.DataFactory%2FdataFactories%2F{Outputs.dataFactoryName}/entityType//entityName/) page.
+2. Replace all auto-generated *typeProperties* with
+```
+"dataLakeStoreUri": "https://{Outputs.adlStoreAccount.endpoint}/webhdfs/v1"
+```
+3. Click *Authorize* and then *Deploy*.
+#### Defining output dataset (on *Azure Data Lake Store*) for *Storage Blob* egress
+1. Click *New dataset* -> *Azure Data Lake Store* on the same [Author and deploy](https://portal.azure.com/#blade/Microsoft_Azure_DataFactory/ADFEditorTreeBlade/factoryId/%2Fsubscriptions%2F{SubscriptionId}%2FresourceGroups%2F{ResourceGroupName}%2Fproviders%2FMicrosoft.DataFactory%2FdataFactories%2F{Outputs.dataFactoryName}/entityType//entityName/) page.
+2. Replace the auto-generated template with the following: 
+```
+{
+    "name": "DataLakeSourceDataset",
+    "properties": {
+        "type": "AzureDataLakeStore",
+        "linkedServiceName": "AzureDataLakeStoreLinkedService",
+        "typeProperties": {
+            "folderPath": "{Year}/{Month}/{Day}",
+            "fileName": "{Hour}-{Minute}.tsv",
+            "partitionedBy": [
+                {
+                    "name": "Year",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "yyyy"
+                    }
+                },
+                {
+                    "name": "Month",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "%M"
+                    }
+                },
+                {
+                    "name": "Day",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "%d"
+                    }
+                },
+                {
+                    "name": "Hour",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "%H"
+                    }
+                },
+                {
+                    "name": "Minute",
+                    "value": {
+                        "type": "DateTime",
+                        "date": "SliceStart",
+                        "format": "%m"
+                    }
+                }
+            ]
+        },
+        "availability": {
+            "frequency": "Minute",
+            "interval": {Outputs.outputInterval}
+        }
+    }
+}
+```
+#### Creating a pipeline for *Storage Blob* egress into *Azure Data Lake Store*
+1. Click *New pipeline* on the same [Author and deploy](https://portal.azure.com/#blade/Microsoft_Azure_DataFactory/ADFEditorTreeBlade/factoryId/%2Fsubscriptions%2F{SubscriptionId}%2FresourceGroups%2F{ResourceGroupName}%2Fproviders%2FMicrosoft.DataFactory%2FdataFactories%2F{Outputs.dataFactoryName}/entityType//entityName/) page.
+2. Replace the entire auto-generated template with the following:
+```
+{
+    "name": "StorageBlobEgressPipeline",
+    "properties": {
+        "activities": [
+            {
+                "name": "StorageBlobEgress",
+                "linkedServiceName": "AzureDataLakeAnalyticsLinkedService",
+                "type": "DataLakeAnalyticsU-SQL",
+                "typeProperties": {
+                    "scriptPath": "scripts\\StorageBlobEgress.usql",
+                    "scriptLinkedService": "SourceStorageLinkedService",
+                    "degreeOfParallelism": 3,
+                    "priority": 100,
+                    "parameters": {
+                        "in": "$$Text.Format('wasb://{Outputs.outputContainer}@{Outputs.storageAccount}.blob.core.windows.net/{0:yyyy/MM/dd/HH-mm}.txt', WindowStart)",
+                        "out": "$$Text.Format('input/{0:yyyy/MM/dd/HH-mm}.tsv', WindowStart)",
+                        "assemblyUri": "wasb://binaries@{Outputs.storageAccount}.blob.core.windows.net/CaqsUsqlLib.dll"
+                    }
+                },
+                "inputs": [
+                    {
+                        "name": "BlobInputTable"
+                    }
+                ],
+                "outputs": [
+                    {
+                        "name": "DataLakeSourceDataset"
+                    }
+                ],
+                "policy": {
+                    "timeout": "00:10:00",
+                    "delay": "00:05:00",
+                    "concurrency": 1,
+                    "executionPriorityOrder": "NewestFirst"
+                },
+                "scheduler": {
+                    "frequency": "Minute",
+                    "interval": {Outputs.outputInterval}
+                }
+            }
+        ],
+        "start": "2016-01-31T08:30:00Z",
+        "end": "2016-01-31T09:00:00Z"
+    }
+}
+```
+3. Update the *start* value to match the first input data slice generated by the *Twitter Listener Cloud App*;
+set the *end* value to a future date as you wish.
+4. Click *Deploy*.
+
+### Part 3. Analysis and output (optional demo)
+
+#### Creating *Storage Blob* output dataset for final *Data Lake* analysis data egress
+```
+{
+    "name": "BlobOutputTable",
+    "properties": {
+        "type": "AzureBlob",
+        "linkedServiceName": "SourceStorageLinkedService",
+        "typeProperties": {
+            "fileName": "out.txt",
+            "folderPath": "outputs/"
+        },
+        "availability": {
+            "frequency": "Minute",
+            "interval": {Outputs.outputInterval}
+        }
+    }
+}
+```
+
+#### Creating a data analysis pipeline
+
+```
+{
+    "name": "AnalysisPipeline",
+    "properties": {
+        "activities": [{
+                "type": "DataLakeAnalyticsU-SQL",
+                "typeProperties": {
+                    "scriptPath": "scripts\\Analyze.usql",
+                    "scriptLinkedService": "SourceStorageLinkedService",
+                    "degreeOfParallelism": 3,
+                    "priority": 100,
+                    "parameters": {
+                        "in": "$$Text.Format('input/{0:yyyy/MM/dd/HH-mm}.tsv', WindowStart)",
+                        "out": "wasb://outputs@dlfd09stg.blob.core.windows.net/last24.txt"
+                    }
+                },
+                "inputs": [{
+                    "name": "DataLakeSourceDataset"
+                }],
+                "outputs": [{
+                    "name": "BlobOutputTable"
+                }],
+                "policy": {
+                    "timeout": "01:00:00",
+                    "concurrency": 1,
+                    "retry": 3
+                },
+                "scheduler": {
+                    "frequency": "Minute",
+                    "interval": {Outputs.outputInterval}
+                },
+                "name": "AnalysisPipeline",
+                "linkedServiceName": "AzureDataLakeAnalyticsLinkedService"
+            }
+        ],
+        "start": "2016-02-01T20:45:00Z",
+        "end": "2016-02-20T09:00:00Z"
+    }
+}
+```
+
+#### Reading the output
+Click [here](https://{Outputs.storageAccount}.blob.core.windows.net/outputs/last24.txt) to see Hillary vs Bernie media buzz breakdown.
+
+### References
+1. [U-SQL language reference](https://msdn.microsoft.com/en-us/library/azure/mt591959.aspx)
+2. [Creating big data pipelines using Azure Data Lake and Azure Data Factory](https://azure.microsoft.com/en-us/blog/creating-big-data-pipelines-using-azure-data-lake-and-azure-data-factory/)
+3. [Tutorial: Get started with Azure Data Lake Analytics U-SQL language](https://azure.microsoft.com/en-us/documentation/articles/data-lake-analytics-u-sql-get-started/)
+4. [U-SQL Tables](https://msdn.microsoft.com/en-us/library/azure/mt621324.aspx)
