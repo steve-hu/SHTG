@@ -1,4 +1,4 @@
-#Solution How To Guide for multistep solution
+# Solution How To Guide for multistep solution
 * [Summary](#Summary)
 * [Prerequisites](#Prerequisites)
 * [Description](#Description)
@@ -8,19 +8,19 @@
   * [Visualization](#visualization)
   * [Security](#security)
 
-#<a name="Summary"></a>Summary
+# <a name="Summary"></a>Summary
 <Guide type="ShortDescription">
 Deploying multiple ARM templates and executing actions that cannot be accomplsihed through ARM templates.
 </Guide>
 
-#<a name="Prerequisites">Prerequisites</a>
+# <a name="Prerequisites"></a>Prerequisites
 <Guide type="Prerequisites">
 No Prerequisites for this pattern.
 
 You can avoid showing this section in CIQS by not having the &lt;Guide type="Prerequisites"&gt; tag.
 </Guide>
 
-#<a name="Description"></a>Description
+# <a name="Description"></a>Description
 ### Estimated Provisioning Time: <Guide type="EstimatedTime">5 Minutes</Guide>
 <Guide type="LongDescription">
 This pattern demonstrates how to automate a demo that requires deploying multiple ARM templates and also executing actions that cannot be accomplsihed through ARM templates alone.
@@ -35,6 +35,7 @@ The pattern involves the following four steps:
 
 # <a name="PostDeployment"></a>Post Deployment Guidance
 <Guide type="PostDeploymentGuidance" url="https://github.com/steve-hu/SHTG/blob/master/multistep/PostDeployment.md"/>
+
 ## <a name="scaling"></a>Scaling
 * More descriptions about scaling.
 
