@@ -1,26 +1,26 @@
 # Solution How To Guide for multistep solution
-* [Summary](#Summary)
-* [Prerequisites](#Prerequisites)
-* [Description](#Description)
-* [Post Deployment Guidance](#PostDeployment)
+* [Summary](#summary)
+* [Prerequisites](#prerequisites)
+* [Description](#description)
+* [Post Deployment Guidance](#postDeployment)
   * [Scaling](#scaling)
   * [Customization](#customization)
   * [Visualization](#visualization)
   * [Security](#security)
 
-# <a name="Summary"></a>Summary
+# <a name="summary"></a>Summary
 <Guide type="ShortDescription">
 Deploying multiple ARM templates and executing actions that cannot be accomplsihed through ARM templates.
 </Guide>
 
-# <a name="Prerequisites"></a>Prerequisites
+# <a name="prerequisites"></a>Prerequisites
 <Guide type="Prerequisites">
 No Prerequisites for this pattern.
 
 You can avoid showing this section in CIQS by not having the &lt;Guide type="Prerequisites"&gt; tag.
 </Guide>
 
-# <a name="Description"></a>Description
+# <a name="description">Description</a>
 ### Estimated Provisioning Time: <Guide type="EstimatedTime">5 Minutes</Guide>
 <Guide type="LongDescription">
 This pattern demonstrates how to automate a demo that requires deploying multiple ARM templates and also executing actions that cannot be accomplsihed through ARM templates alone.
@@ -33,7 +33,7 @@ The pattern involves the following four steps:
 4. Invoke the second Web Job.
 </Guide>
 
-# <a name="PostDeployment"></a>Post Deployment Guidance
+# <a name="postDeployment"></a>Post Deployment Guidance
 <Guide type="PostDeploymentGuidance" url="https://github.com/steve-hu/SHTG/blob/master/multistep/PostDeployment.md"/>
 
 ## <a name="scaling"></a>Scaling
