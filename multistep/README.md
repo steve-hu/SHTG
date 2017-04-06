@@ -9,7 +9,7 @@
   * [Security](#security)
 
 # <a name="summary"></a>Summary
-<Guide type="ShortDescription">
+<Guide type="Summary">
 Deploying multiple ARM templates and executing actions that cannot be accomplsihed through ARM templates.
 </Guide>
 
@@ -22,7 +22,7 @@ You can avoid showing this section in CIQS by not having the &lt;Guide type="Pre
 
 # <a name="description"></a>Description
 ### Estimated Provisioning Time: <Guide type="EstimatedTime">5 Minutes</Guide>
-<Guide type="LongDescription">
+<Guide type="Description">
 This pattern demonstrates how to automate a demo that requires deploying multiple ARM templates and also executing actions that cannot be accomplsihed through ARM templates alone.
 
 The pattern involves the following four steps:
